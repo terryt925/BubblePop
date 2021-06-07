@@ -1,0 +1,21 @@
+#game {
+  width: 400px;
+  height: 600px;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+}
+
+.jumper {
+  width: 85px;
+  height: 85px;
+  background-color: rgba(96, 239, 255, 0.801);
+  position: absolute;
+  border-radius: 50%;
+}
+
+.pad {
+  width: 85px;
+  height: 15px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+}

@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isGoingRight = false;
   let leftTimerId; 
   let rightTimerId;
+  let score = 0;
 
   function createJumper() {
     map.appendChild(jumper)
@@ -45,6 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
         pad.bottom -= 4
         let visual = pad.visual
         visual.style.bottom = pad.bottom + 'px'
+        if(pad.bottom < 10) {
+          let firstPad = pads[0].visual
+          firstPad.classList.remove('pad')
+          pads.shift()
+          score++
+          let viz = document.createElement('div')
+          let newPad = new Pad(600, viz, map)
+          pads.push(newPad)
+        }
       })
     }
   }
@@ -87,8 +97,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function gameOver() {
     console.log('game over')
     isGameOver = true;
+    while (map.firstChild) {
+      map.removeChild(map.firstChild)
+    }
+    map.innerHTML = score
     clearInterval(upTimerId)
     clearInterval(downTimerId)
+    clearInterval(leftTimerId)
+    clearInterval(rightTimerId)
   }
 
   function control(e) {
@@ -102,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function moveLeft() {
+    clearInterval(leftTimerId)
     if(isGoingRight) {
       clearInterval(rightTimerId)
       isGoingRight = false
@@ -116,13 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function moveRight() {
+    clearInterval(rightTimerId)
     if(isGoingLeft) {
       clearInterval(leftTimerId)
       isGoingLeft = false
     }
     isGoingRight = true
     rightTimerId = setInterval(function() {
-      if (jumperLeftSpace >= 340) {
+      if (jumperLeftSpace <= 340) {
         jumperLeftSpace += 5
         jumper.style.left = jumperLeftSpace + 'px'
       } else moveLeft()

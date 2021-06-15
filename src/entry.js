@@ -113,27 +113,38 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (e.key === 'ArrowRight') {
       moveRight()
     } else if (e. key === 'ArrowUp') {
-
+      moveStraight()
     }
   }
 
   function moveLeft() {
+    // clearInterval(rightTimerId)
     clearInterval(leftTimerId)
+    // if(isGoingLeft) {
+    //   clearInterval(leftTimerId)
+    // }
     if(isGoingRight) {
-      clearInterval(rightTimerId)
+      clearInterval(rightTimerId);
       isGoingRight = false
     }
     isGoingLeft = true;
-    leftTimerId - setInterval(function () {
+    leftTimerId = setInterval(function () {
       if (jumperLeftSpace >= 0) {
         jumperLeftSpace -=5
         jumper.style.left = jumperLeftSpace + 'px'
-      } else moveRight()
+      } else {
+        moveRight()
+        // isGoingLeft = false;
+      }
     },30)
   }
 
   function moveRight() {
+    // clearInterval(leftTimerId);
     clearInterval(rightTimerId)
+    // if(isGoingRight) {
+    //   clearInterval(rightTimerId)
+    // }
     if(isGoingLeft) {
       clearInterval(leftTimerId)
       isGoingLeft = false
@@ -143,8 +154,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (jumperLeftSpace <= 340) {
         jumperLeftSpace += 5
         jumper.style.left = jumperLeftSpace + 'px'
-      } else moveLeft()
+      } else {
+        moveLeft()
+        // isGoingRight = false;
+      }
     }, 30)
+  }
+
+  function moveStraight() {
+    isGoingRight = false;
+    isGoingLeft = false;
+    clearInterval(rightTimerId);
+    clearInterval(leftTimerId)
   }
 
   function start() {
@@ -153,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       createJumper()
       setInterval(movePads, 30)
       jump()
-      document.addEventListener('keyup',control)
+      document.addEventListener('keydown',control)
     }
   }
 

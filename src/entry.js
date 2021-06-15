@@ -8,11 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const jumper = document.createElement('div');
   let jumperLeftSpace = 50;
   let jumperBottomSpace = 250;
+  let padCount = 5;
   let isGameOver = false;
   const pads = [];
   let upTimerId;
   let downTimerId;
   let isJumping = true;
+  let startPoint = 150;
+  let isGoingLeft = false;
+  let isGoingRight = false;
+  let leftTimerId; 
+  let rightTimerId;
 
   function createJumper() {
     map.appendChild(jumper)
@@ -23,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function createPads() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < padCount; i++) {
       let padGap = 600/ 5;
       let newPadBottom = 100 + i * padGap
       let viz = document.createElement('div')
@@ -49,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     upTimerId = setInterval(() => {
       jumperBottomSpace += 20;
       jumper.style.bottom = jumperBottomSpace + 'px';
-      if (jumperBottomSpace > 350) {
+      if (jumperBottomSpace > startPoint + 200) {
         fall()
       }
     }, 30)
@@ -71,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         (jumperLeftSpace <= (pad.left + 85)) &&
         (!isJumping)) {
           console.log('landed')
+          startPoint = jumperBottomSpace
           jump()
         }
       })
@@ -84,14 +91,42 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(downTimerId)
   }
 
-  function conrol(e) {
+  function control(e) {
     if(e.key === 'ArrowLeft') {
-
+      moveLeft()
     } else if (e.key === 'ArrowRight') {
-
+      moveRight()
     } else if (e. key === 'ArrowUp') {
 
     }
+  }
+
+  function moveLeft() {
+    if(isGoingRight) {
+      clearInterval(rightTimerId)
+      isGoingRight = false
+    }
+    isGoingLeft = true;
+    leftTimerId - setInterval(function () {
+      if (jumperLeftSpace >= 0) {
+        jumperLeftSpace -=5
+        jumper.style.left = jumperLeftSpace + 'px'
+      } else moveRight()
+    },30)
+  }
+
+  function moveRight() {
+    if(isGoingLeft) {
+      clearInterval(leftTimerId)
+      isGoingLeft = false
+    }
+    isGoingRight = true
+    rightTimerId = setInterval(function() {
+      if (jumperLeftSpace >= 340) {
+        jumperLeftSpace += 5
+        jumper.style.left = jumperLeftSpace + 'px'
+      } else moveLeft()
+    }, 30)
   }
 
   function start() {
@@ -100,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
       createJumper()
       setInterval(movePads, 30)
       jump()
+      document.addEventListener('keyup',control)
     }
   }
 

@@ -16,8 +16,7 @@
   <audio id="audio">
     <source src="dist/AdhesiveWombat - 8 Bit Adventure (1).mp3" type="audio/mpeg">
   </audio>
-  <button id='button' onclick="playAudio()" type="button">Play Music</button>
-  <!-- <button onclick="pauseAudio()" type="button">Pause Audio</button> -->
+  <div id='button' onclick="playAudio()">Play Music</div>
 
   <script>
     let x = document.getElementById("audio");
@@ -34,10 +33,6 @@
         document.getElementById('button').innerHTML = 'Play Music';
       }
     }
-    
-    // function pauseAudio() {
-    // x.pause();
-    // }
   </script>
 </body>
 

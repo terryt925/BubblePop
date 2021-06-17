@@ -1,11 +1,13 @@
-// const { platform } = require("node:os");
-// import { platform } from 'node:os';
-// import { platform } from 'node:os';
+
 import Pad from './pad.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const map = document.getElementById('game');
+  // const controls = document.getElementById('controls');
+  const result = document.getElementById('score');
+  let x = document.getElementById("audio");
   const jumper = document.createElement('div');
+  const startButton = document.createElement('div');
   let jumperLeftSpace = 50;
   let jumperBottomSpace = 250;
   let padCount = 5;
@@ -86,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ((jumperLeftSpace + 60) >= pad.left) &&
         (jumperLeftSpace <= (pad.left + 85)) &&
         (!isJumping)) {
-          console.log('landed')
           startPoint = jumperBottomSpace
           jump()
         }
@@ -100,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     while (map.firstChild) {
       map.removeChild(map.firstChild)
     }
-    map.innerHTML = score
+    result.innerHTML = score
     clearInterval(upTimerId)
     clearInterval(downTimerId)
     clearInterval(leftTimerId)
@@ -118,11 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function moveLeft() {
-    // clearInterval(rightTimerId)
     clearInterval(leftTimerId)
-    // if(isGoingLeft) {
-    //   clearInterval(leftTimerId)
-    // }
     if(isGoingRight) {
       clearInterval(rightTimerId);
       isGoingRight = false
@@ -134,17 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
         jumper.style.left = jumperLeftSpace + 'px'
       } else {
         moveRight()
-        // isGoingLeft = false;
       }
     },30)
   }
 
   function moveRight() {
-    // clearInterval(leftTimerId);
     clearInterval(rightTimerId)
-    // if(isGoingRight) {
-    //   clearInterval(rightTimerId)
-    // }
     if(isGoingLeft) {
       clearInterval(leftTimerId)
       isGoingLeft = false
@@ -175,9 +167,23 @@ document.addEventListener('DOMContentLoaded', () => {
       setInterval(movePads, 30)
       jump()
       document.addEventListener('keydown',control)
+      hideStart()
     }
   }
 
-  
-  start()
+  function instructions() {
+    map.appendChild(startButton)
+    startButton.classList.add('start')
+    startButton.innerHTML = 'Start';
+    // startButton.onclick = hideStart;
+    startButton.onclick = start;
+    // startButton.onclick = startButton.style.display = "none";
+  }
+
+  function hideStart() {
+    map.removeChild(startButton)
+  }
+
+  // start()
+  instructions()
 })

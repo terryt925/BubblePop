@@ -3,12 +3,42 @@
 <head>
   <title>Bubble Pop</title>
   <link rel="stylesheet" href="dist/app.css"></link>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <script type="module" src="src/entry.js"></script>
 </head>
 
 <body>
-  <div id="game" ></div>
+  <div id='screen'>
+    <div id="game" ></div>
+    <div id='controls'></div>
+  </div>
+  <div id='score'></div>
+  <audio id="audio">
+    <source src="dist/AdhesiveWombat - 8 Bit Adventure (1).mp3" type="audio/mpeg">
+  </audio>
+  <button id='button' onclick="playAudio()" type="button">Play Music</button>
+  <!-- <button onclick="pauseAudio()" type="button">Pause Audio</button> -->
 
+  <script>
+    let x = document.getElementById("audio");
+    let y = false;
+    
+    function playAudio() {
+      if(y === false) {
+        y = true;
+        x.play();
+        document.getElementById('button').innerHTML = 'Mute';
+      } else {
+        y = false;
+        x.pause();
+        document.getElementById('button').innerHTML = 'Play Music';
+      }
+    }
+    
+    // function pauseAudio() {
+    // x.pause();
+    // }
+  </script>
 </body>
 
 </html>

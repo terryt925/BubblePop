@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const map = document.getElementById('game');
   // const controls = document.getElementById('controls');
   const result = document.getElementById('score');
-  let x = document.getElementById("audio");
   const jumper = document.createElement('div');
   const startButton = document.createElement('div');
   let jumperLeftSpace = 50;
@@ -22,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let leftTimerId; 
   let rightTimerId;
   let score = 0;
+  const x = document.getElementById("audio");
+  const musicButton = document.getElementById('button');
+  let y = false;
 
   function createJumper() {
     map.appendChild(jumper)
@@ -175,13 +177,30 @@ document.addEventListener('DOMContentLoaded', () => {
     map.appendChild(startButton)
     startButton.classList.add('start')
     startButton.innerHTML = 'Start';
-    // startButton.onclick = hideStart;
     startButton.onclick = start;
+    // startButton.onclick = hideStart;
     // startButton.onclick = startButton.style.display = "none";
+    // musicButton.classList.add('button')
+    musicButton.innerHTML = 'Play Music';
+    musicButton.onclick = playAudio;
   }
 
   function hideStart() {
     map.removeChild(startButton)
+  }
+
+
+    
+  function playAudio() {
+    if(y === false) {
+      y = true;
+      x.play();
+      document.getElementById('button').innerHTML = 'Mute';
+    } else {
+      y = false;
+      x.pause();
+      document.getElementById('button').innerHTML = 'Play Music';
+    }
   }
 
   // start()

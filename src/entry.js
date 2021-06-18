@@ -5,13 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const map = document.getElementById('game');
   // const controls = document.getElementById('controls');
   const result = document.getElementById('score');
+  const restart = document.getElementById('restart');
   const jumper = document.createElement('div');
   const startButton = document.createElement('div');
+  const rules = document.getElementById('instructions');
+  const difficulty = document.getElementById('difficulty');
   let jumperLeftSpace = 50;
   let jumperBottomSpace = 250;
   let padCount = 5;
   let isGameOver = false;
-  const pads = [];
+  let pads = [];
+  let redPadCounter = 0;
   let upTimerId;
   let downTimerId;
   let isJumping = true;
@@ -21,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let leftTimerId; 
   let rightTimerId;
   let score = 0;
+  let hardMode = false;
   const x = document.getElementById("audio");
   const musicButton = document.getElementById('button');
   let y = false;
@@ -34,11 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function createPads() {
+    let color;
+    // if (redPadCounter >= 2) {
+    //   color = 'red';
+    //   redPadCounter = 0;
+    // } else {
+      color = 'white';
+    //   redPadCounter++
+    // }
     for (let i = 0; i < padCount; i++) {
       let padGap = 600/ 5;
       let newPadBottom = 100 + i * padGap
       let viz = document.createElement('div')
-      let newPad = new Pad(newPadBottom, viz, map)
+      let newPad = new Pad(newPadBottom, viz, map, color)
       pads.push(newPad);
       console.log(pads)
     }
@@ -53,10 +66,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if(pad.bottom < 10) {
           let firstPad = pads[0].visual
           firstPad.classList.remove('pad')
+          firstPad.classList.remove('redPad')
           pads.shift()
           score++
+          let color = 'white';
+          if(hardMode === true) {
+            if (redPadCounter >= 3) {
+              color = 'red';
+              redPadCounter = 0;
+            } else {
+              color = 'white';
+              redPadCounter++
+            }
+          }
           let viz = document.createElement('div')
-          let newPad = new Pad(600, viz, map)
+          let newPad = new Pad(600, viz, map, color)
           pads.push(newPad)
         }
       })
@@ -65,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function jump() {
     clearInterval(downTimerId)
+    // clearInterval(upTimerId)
     isJumping = true;
     upTimerId = setInterval(() => {
       jumperBottomSpace += 20;
@@ -90,24 +115,72 @@ document.addEventListener('DOMContentLoaded', () => {
         ((jumperLeftSpace + 60) >= pad.left) &&
         (jumperLeftSpace <= (pad.left + 85)) &&
         (!isJumping)) {
-          startPoint = jumperBottomSpace
-          jump()
+          if(pad.color === 'red') {
+            gameOver();
+          } else {
+            startPoint = jumperBottomSpace
+            jump()
+          }
         }
       })
     },30)
   }
 
   function gameOver() {
-    console.log('game over')
+    // console.log('game over')
     isGameOver = true;
     while (map.firstChild) {
       map.removeChild(map.firstChild)
     }
-    result.innerHTML = score
     clearInterval(upTimerId)
     clearInterval(downTimerId)
     clearInterval(leftTimerId)
     clearInterval(rightTimerId)
+    result.innerHTML = score
+    restart.innerHTML = 'Retry?'
+    restart.onclick = restartGame;
+    if(hardMode === false) {
+      difficulty.innerHTML = 'Hard Mode?';
+      difficulty.onclick = difficultyChange;
+    } else {
+      difficulty.innerHTML = 'Easy Mode?';
+      difficulty.onclick = difficultyChange;
+    }
+    pads = [];
+  }
+
+  function restartGame() {
+    restart.innerHTML = ''
+    result.innerHTML = ''
+    score = 0;
+    isGameOver = false;
+    createPads()
+    createJumper()
+    // pads = []
+    document.addEventListener('keydown',control)
+    // setInterval(movePads, 30)
+    jump()
+    // hideStart()
+    // jumperBottomSpace = 250;
+    // map.appendChild(startButton)
+    // setInterval(movePads, 30)
+  }
+
+  function difficultyChange() {
+    restart.innerHTML = ''
+    result.innerHTML = ''
+    difficulty.innerHTML = ''
+    if (hardMode === false) {
+      hardMode = true;
+    } else {
+      hardMode = false;
+    }
+    score = 0;
+    isGameOver = false;
+    createPads()
+    createJumper()
+    document.addEventListener('keydown',control)
+    jump()    
   }
 
   function control(e) {
@@ -145,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     isGoingRight = true
     rightTimerId = setInterval(function() {
-      if (jumperLeftSpace <= 340) {
+      if (jumperLeftSpace <= 315) {
         jumperLeftSpace += 5
         jumper.style.left = jumperLeftSpace + 'px'
       } else {
@@ -181,12 +254,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // startButton.onclick = hideStart;
     // startButton.onclick = startButton.style.display = "none";
     // musicButton.classList.add('button')
-    musicButton.innerHTML = 'Play Music';
+    if(y === false) {
+      musicButton.innerHTML = 'Sound On';
+    } else {
+      musicButton.innerHTML = 'Sound Off';
+    }
     musicButton.onclick = playAudio;
+    pads = [];
   }
 
   function hideStart() {
-    map.removeChild(startButton)
+      map.removeChild(startButton);
+      musicButton.innerHTML = '';
+      rules.innerHTML = '';
+      // startButton.innerHTML = '';
   }
 
 
@@ -195,11 +276,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if(y === false) {
       y = true;
       x.play();
-      document.getElementById('button').innerHTML = 'Mute';
+      document.getElementById('button').innerHTML = 'Sound Off';
     } else {
       y = false;
       x.pause();
-      document.getElementById('button').innerHTML = 'Play Music';
+      document.getElementById('button').innerHTML = 'Sound On';
     }
   }
 

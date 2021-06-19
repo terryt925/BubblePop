@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const startButton = document.createElement('div');
   const rules = document.getElementById('instructions');
   const difficulty = document.getElementById('difficulty');
+  const mainMenu = document.getElementById('main-menu');
   let jumperLeftSpace = 50;
   let jumperBottomSpace = 250;
   let padCount = 5;
@@ -146,7 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
       difficulty.innerHTML = 'Easy Mode';
       difficulty.onclick = difficultyChange;
     }
+    mainMenu.innerHTML = 'Main Menu';
+    mainMenu.onclick = main;
     pads = [];
+  }
+
+  function main() {
+
   }
 
   function restartGame() {
@@ -264,9 +271,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function hideStart() {
-      map.removeChild(startButton);
-      musicButton.innerHTML = '';
-      rules.innerHTML = '';
+      // map.removeChild(startButton);
+      startButton.style.display = 'none';
+      musicButton.style.display = 'none';
+      rules.style.display = 'none'
       // startButton.innerHTML = '';
   }
 

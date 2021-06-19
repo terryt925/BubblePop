@@ -123,7 +123,18 @@
 
 #difficulty {
   position: fixed;
-  top: 70%;
+  top: 68%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 90px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+}
+
+#main-menu {
+  position: fixed;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -145,6 +156,10 @@
 }
 
 .start:hover {
+  color: rgba(96, 239, 255, 0.801);
+}
+
+#main-menu:hover {
   color: rgba(96, 239, 255, 0.801);
 }
 

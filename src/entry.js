@@ -137,13 +137,13 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(leftTimerId)
     clearInterval(rightTimerId)
     result.innerHTML = score
-    restart.innerHTML = 'Retry?'
+    restart.innerHTML = 'Retry'
     restart.onclick = restartGame;
     if(hardMode === false) {
-      difficulty.innerHTML = 'Hard Mode?';
+      difficulty.innerHTML = 'Hard Mode';
       difficulty.onclick = difficultyChange;
     } else {
-      difficulty.innerHTML = 'Easy Mode?';
+      difficulty.innerHTML = 'Easy Mode';
       difficulty.onclick = difficultyChange;
     }
     pads = [];

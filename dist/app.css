@@ -51,7 +51,7 @@
 
 .start {
   position: fixed;
-  top: 35%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -78,7 +78,7 @@
   font-family: 'Orbitron', sans-serif;
   cursor: pointer;
   position: absolute;
-  top: 55%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -102,6 +102,13 @@
   justify-content: center;
   flex-direction: row;
   padding-bottom: 5px;
+}
+
+#instructions div i {
+  color: white;
+  transform: scale(1.6);
+  margin-right: 20px;
+  margin-top: 4px;
 }
 
 #red {

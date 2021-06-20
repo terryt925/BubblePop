@@ -15,6 +15,7 @@
   background-color: rgba(96, 239, 255, 0.801);
   position: absolute;
   border-radius: 50%;
+  z-index: 5;
 }
 
 .pad {
@@ -66,7 +67,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 100px;
+  font-size: 60px;
   font-family: 'Orbitron', sans-serif;
   cursor: pointer;
   /* padding-top: 200px; */
@@ -86,11 +87,24 @@
   text-align: center;
 }
 
+.button {
+  font-size: 50px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+
 #instructions {
-  font-size: 20px;
+  font-size: 30px;
   font-family: 'Orbitron', sans-serif;
   position: absolute;
-  top: 75%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: green;
@@ -123,22 +137,22 @@
 
 #difficulty {
   position: fixed;
-  top: 68%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 90px;
+  font-size: 60px;
   font-family: 'Orbitron', sans-serif;
   cursor: pointer;
 }
 
 #main-menu {
   position: fixed;
-  top: 80%;
+  top: 75%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 90px;
+  font-size: 60px;
   font-family: 'Orbitron', sans-serif;
   cursor: pointer;
 }
@@ -155,12 +169,20 @@
   color: rgba(96, 239, 255, 0.801);
 }
 
+.button:hover {
+  color: rgba(96, 239, 255, 0.801);
+}
+
 .start:hover {
   color: rgba(96, 239, 255, 0.801);
 }
 
 #main-menu:hover {
   color: rgba(96, 239, 255, 0.801);
+}
+
+.hidden {
+  display: none;
 }
 
 /* #hidden-screen {

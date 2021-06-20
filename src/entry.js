@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const rules = document.getElementById('instructions');
   const difficulty = document.getElementById('difficulty');
   const mainMenu = document.getElementById('main-menu');
+  const newButton = document.createElement('div');
   let jumperLeftSpace = 50;
   let jumperBottomSpace = 250;
   let padCount = 5;
@@ -153,12 +154,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function main() {
-
+    restart.innerHTML = ''
+    result.innerHTML = ''
+    mainMenu.innerHTML = ''
+    difficulty.innerHTML = ''
+    score = 0;
+    pads = [];
+    hardMode = false;
+    map.appendChild(startButton)
+    startButton.classList.add('start')
+    startButton.innerHTML = 'Start';
+    map.appendChild(newButton)
+    newButton.classList.add('button')
+    if(y === false) {
+      newButton.innerHTML = 'Sound On';
+    } else {
+      newButton.innerHTML = 'Sound Off';
+    }
+    newButton.onclick = replayAudio;
+    startButton.onclick = restartGame;
+    rules.classList.remove('hidden');
   }
 
   function restartGame() {
     restart.innerHTML = ''
     result.innerHTML = ''
+    difficulty.innerHTML = ''
+    mainMenu.innerHTML = ''
+    newButton.innerHTML = ''
     score = 0;
     isGameOver = false;
     createPads()
@@ -167,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown',control)
     // setInterval(movePads, 30)
     jump()
-    // hideStart()
+    hideStart()
     // jumperBottomSpace = 250;
     // map.appendChild(startButton)
     // setInterval(movePads, 30)
@@ -177,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     restart.innerHTML = ''
     result.innerHTML = ''
     difficulty.innerHTML = ''
+    mainMenu.innerHTML = ''
     if (hardMode === false) {
       hardMode = true;
     } else {
@@ -271,10 +295,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function hideStart() {
-      // map.removeChild(startButton);
-      startButton.style.display = 'none';
-      musicButton.style.display = 'none';
-      rules.style.display = 'none'
+    // startButton.style.display = 'none';
+    // musicButton.style.display = 'none';
+    rules.classList.add('hidden')
+    // startButton.style.visibility = 'hidden';
+    // musicButton.style.visibility = 'hidden';
+    // rules.style.visibility = 'hidden'
+    musicButton.innerHTML = '';
+    difficulty.innerHTML = '';
+    // rules.innerHTML = '';
+    map.removeChild(startButton);
       // startButton.innerHTML = '';
   }
 
@@ -289,6 +319,18 @@ document.addEventListener('DOMContentLoaded', () => {
       y = false;
       x.pause();
       document.getElementById('button').innerHTML = 'Sound On';
+    }
+  }
+
+  function replayAudio() {
+    if(y === false) {
+      y = true;
+      x.play();
+      document.querySelector('.button').innerHTML = 'Sound Off';
+    } else {
+      y = false;
+      x.pause();
+      document.querySelector('.button').innerHTML = 'Sound On';
     }
   }
 

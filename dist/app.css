@@ -1,8 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
 #game {
   width: 400px;
   height: 600px;
   background-color: rgb(0, 0, 0);
   position: relative;
+  transform: scale(1.7);
 }
 
 .jumper {
@@ -11,6 +15,7 @@
   background-color: rgba(96, 239, 255, 0.801);
   position: absolute;
   border-radius: 50%;
+  z-index: 5;
 }
 
 .pad {
@@ -19,3 +24,181 @@
   background-color: rgb(255, 255, 255);
   position: absolute;
 }
+
+.redPad {
+  width: 85px;
+  height: 15px;
+  background-color: rgb(255, 0, 0);
+  position: absolute;
+}
+
+#screen {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#score {
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-size: 200px;
+  color: rgba(96, 239, 255, 0.801);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.start {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 120px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+}
+
+#restart{
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 60px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  /* padding-top: 200px; */
+  /* z-index: 4; */
+}
+
+#button {
+  font-size: 50px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+
+.button {
+  font-size: 50px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+
+#instructions {
+  font-size: 30px;
+  font-family: 'Orbitron', sans-serif;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: green;
+  width: 100%;
+  text-align: center;
+}
+#instructions div {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-bottom: 5px;
+}
+
+#instructions div i {
+  color: white;
+  transform: scale(1.6);
+  margin-right: 20px;
+  margin-top: 4px;
+}
+
+#red {
+  color: red;
+  margin-right: 4px;
+}
+
+#white {
+  color: white;
+  margin-right: 4px;
+}
+
+#difficulty {
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 60px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+}
+
+#main-menu {
+  position: fixed;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 60px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+}
+
+#restart:hover {
+  color: rgba(96, 239, 255, 0.801);
+}
+
+#difficulty:hover {
+  color: rgba(96, 239, 255, 0.801);
+}
+
+#button:hover {
+  color: rgba(96, 239, 255, 0.801);
+}
+
+.button:hover {
+  color: rgba(96, 239, 255, 0.801);
+}
+
+.start:hover {
+  color: rgba(96, 239, 255, 0.801);
+}
+
+#main-menu:hover {
+  color: rgba(96, 239, 255, 0.801);
+}
+
+.hidden {
+  display: none;
+}
+
+/* #hidden-screen {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+}
+
+#hidden-game {
+  width: 400px;
+  height: 600px;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  transform: scale(1.7);
+  z-index: -2;
+} */
+

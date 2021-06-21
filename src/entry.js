@@ -175,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startButton.onclick = restartGame;
     rules.classList.remove('hidden');
   }
+  
 
   function restartGame() {
     restart.innerHTML = ''

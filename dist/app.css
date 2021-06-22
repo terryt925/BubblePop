@@ -157,6 +157,35 @@
   cursor: pointer;
 }
 
+.fab-icons {
+  /* display: inline-block; */
+/* display: flex; */
+color: white;
+align-self: center;
+font-size: 60px;
+padding: 10px;
+position: relative;
+margin: 5px;
+/* height: 45px;
+width: 45px; */
+/* z-index: 10; */
+}
+
+.fab-icons-ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 88%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fab-icons:hover {
+  color: rgba(96, 239, 255, 0.801);
+}
+
 #restart:hover {
   color: rgba(96, 239, 255, 0.801);
 }

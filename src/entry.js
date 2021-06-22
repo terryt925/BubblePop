@@ -114,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
       pads.forEach( pad => {
         if((jumperBottomSpace >= pad.bottom) && 
         (jumperBottomSpace <= pad.bottom + 15) &&
-        ((jumperLeftSpace + 60) >= pad.left) &&
-        (jumperLeftSpace <= (pad.left + 85)) &&
+        ((jumperLeftSpace + 55) >= pad.left) && //60
+        (jumperLeftSpace <= (pad.left + 80)) && //85
         (!isJumping)) {
           if(pad.color === 'red') {
             gameOver();

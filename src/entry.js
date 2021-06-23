@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
       let viz = document.createElement('div')
       let newPad = new Pad(newPadBottom, viz, map, color)
       pads.push(newPad);
-      console.log(pads)
     }
   }
 
@@ -130,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function gameOver() {
-    // console.log('game over')
+    // .log('game over')
     isGameOver = true;
     while (map.firstChild) {
       map.removeChild(map.firstChild)

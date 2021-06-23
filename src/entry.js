@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const jumper = document.createElement('div');
   const startButton = document.createElement('div');
   const rules = document.getElementById('instructions');
+  const links = document.getElementById('links');
   const difficulty = document.getElementById('difficulty');
   const mainMenu = document.getElementById('main-menu');
   const newButton = document.createElement('div');
@@ -174,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     newButton.onclick = replayAudio;
     startButton.onclick = restartGame;
     rules.classList.remove('hidden');
+    links.classList.remove('hidden');
   }
   
 
@@ -299,6 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // startButton.style.display = 'none';
     // musicButton.style.display = 'none';
     rules.classList.add('hidden')
+    links.classList.add('hidden')
     // startButton.style.visibility = 'hidden';
     // musicButton.style.visibility = 'hidden';
     // rules.style.visibility = 'hidden'

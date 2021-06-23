@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var viz = document.createElement('div');
       var newPad = new _pad_js__WEBPACK_IMPORTED_MODULE_0__.default(newPadBottom, viz, map);
       pads.push(newPad);
-      console.log(pads);
+      // console.log(pads);
     }
   }
 

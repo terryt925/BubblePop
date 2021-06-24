@@ -1,6 +1,7 @@
 
 import Pad from './pad.js';
 
+
 document.addEventListener('DOMContentLoaded', () => {
   const map = document.getElementById('game');
   // const controls = document.getElementById('controls');
